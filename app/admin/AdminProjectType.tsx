@@ -5,7 +5,11 @@ import { storage } from "../firebase";
 import AddPictureButton from "./AddPictureButton";
 import DeletePictureButton from "./DeletePictureButton";
 
-const AdminProjectType = ({ type }) => {
+type AdminProjectTypeProps = {
+    type: string;
+};
+
+const AdminProjectType = ({ type }: AdminProjectTypeProps) => {
     const [imageUrls, setImageUrls] = useState<string[]>([]);
 
     useEffect(() => {
@@ -26,11 +30,11 @@ const AdminProjectType = ({ type }) => {
         fetchImages();
     }, [type]);
 
-    const handleUploadSuccess = (url) => {
+    const handleUploadSuccess = (url: string) => {
         setImageUrls((currentUrls) => [...currentUrls, url]);
     };
 
-    const handleDeleteSuccess = (deletedUrl) => {
+    const handleDeleteSuccess = (deletedUrl: string) => {
         setImageUrls((currentUrls) =>
             currentUrls.filter((url) => url !== deletedUrl)
         );
