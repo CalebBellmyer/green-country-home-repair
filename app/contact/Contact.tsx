@@ -3,50 +3,52 @@ import React, { useState } from "react";
 //import ReCAPTCHA from "react-google-recaptcha";
 
 const Contact = () => {
-    if (typeof window === "undefined") return null;
-    // const [subject, setSubject] = useState("");
-    // const [body, setBody] = useState("");
-    // const [captchaValue, setCaptchaValue] = useState(null);
+    if (typeof window !== "undefined") {
+        // Your client-side code that uses window goes here
+        // const [subject, setSubject] = useState("");
+        // const [body, setBody] = useState("");
+        // const [captchaValue, setCaptchaValue] = useState(null);
 
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-    //     if (!captchaValue) {
-    //         alert("Please verify you are not a robot.");
-    //         return;
-    //     }
+        // const handleSubmit = async (event) => {
+        //     event.preventDefault();
+        //     if (!captchaValue) {
+        //         alert("Please verify you are not a robot.");
+        //         return;
+        //     }
 
-    //     // Send data to the server-side for email processing
-    //     // Example: POST request to your API endpoint
-    // };
+        //     // Send data to the server-side for email processing
+        //     // Example: POST request to your API endpoint
+        // };
 
-    return (
-        <div>WIP</div>
-        // <form onSubmit={handleSubmit}>
-        //     <label htmlFor="subject">Subject:</label>
-        //     <input
-        //         type="text"
-        //         id="subject"
-        //         name="subject"
-        //         value={subject}
-        //         onChange={(e) => setSubject(e.target.value)}
-        //     />
+        return (
+            <div>WIP</div>
+            // <form onSubmit={handleSubmit}>
+            //     <label htmlFor="subject">Subject:</label>
+            //     <input
+            //         type="text"
+            //         id="subject"
+            //         name="subject"
+            //         value={subject}
+            //         onChange={(e) => setSubject(e.target.value)}
+            //     />
 
-        //     <label htmlFor="body">Body:</label>
-        //     <textarea
-        //         id="body"
-        //         name="body"
-        //         value={body}
-        //         onChange={(e) => setBody(e.target.value)}
-        //     />
+            //     <label htmlFor="body">Body:</label>
+            //     <textarea
+            //         id="body"
+            //         name="body"
+            //         value={body}
+            //         onChange={(e) => setBody(e.target.value)}
+            //     />
 
-        //     {/* <ReCAPTCHA
-        //         sitekey="YOUR_RECAPTCHA_SITE_KEY"
-        //         onChange={(value) => setCaptchaValue(value)}
-        //     /> */}
+            //     {/* <ReCAPTCHA
+            //         sitekey="YOUR_RECAPTCHA_SITE_KEY"
+            //         onChange={(value) => setCaptchaValue(value)}
+            //     /> */}
 
-        //     <button type="submit">Submit</button>
-        // </form>
-    );
+            //     <button type="submit">Submit</button>
+            // </form>
+        );
+    }
 };
 
 export default Contact;

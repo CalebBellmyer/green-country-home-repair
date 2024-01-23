@@ -10,65 +10,67 @@ type AdminProjectTypeProps = {
 };
 
 const AdminProjectType = ({ type }: AdminProjectTypeProps) => {
-    if (typeof window === "undefined") return null;
-    const [imageUrls, setImageUrls] = useState<string[]>([]);
+    if (typeof window !== "undefined") {
+        // Your client-side code that uses window goes here
+        const [imageUrls, setImageUrls] = useState<string[]>([]);
 
-    useEffect(() => {
-        const fetchImages = async () => {
-            const folderRef = ref(storage, type);
-            try {
-                const result = await listAll(folderRef);
-                const urlPromises = result.items.map((itemRef) =>
-                    getDownloadURL(itemRef)
-                );
-                const urls = await Promise.all(urlPromises);
-                setImageUrls(urls);
-            } catch (error) {
-                console.error("Error fetching images:", error);
-            }
+        useEffect(() => {
+            const fetchImages = async () => {
+                const folderRef = ref(storage, type);
+                try {
+                    const result = await listAll(folderRef);
+                    const urlPromises = result.items.map((itemRef) =>
+                        getDownloadURL(itemRef)
+                    );
+                    const urls = await Promise.all(urlPromises);
+                    setImageUrls(urls);
+                } catch (error) {
+                    console.error("Error fetching images:", error);
+                }
+            };
+
+            fetchImages();
+        }, [type]);
+
+        const handleUploadSuccess = (url: string) => {
+            setImageUrls((currentUrls) => [...currentUrls, url]);
         };
 
-        fetchImages();
-    }, [type]);
+        const handleDeleteSuccess = (deletedUrl: string) => {
+            setImageUrls((currentUrls) =>
+                currentUrls.filter((url) => url !== deletedUrl)
+            );
+        };
 
-    const handleUploadSuccess = (url: string) => {
-        setImageUrls((currentUrls) => [...currentUrls, url]);
-    };
-
-    const handleDeleteSuccess = (deletedUrl: string) => {
-        setImageUrls((currentUrls) =>
-            currentUrls.filter((url) => url !== deletedUrl)
+        return (
+            <section className="p-4 bg-gray-100">
+                <div className="flex justify-between items-center">
+                    <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">
+                        {type}
+                    </h1>
+                    <AddPictureButton
+                        type={type}
+                        onUploadSuccess={handleUploadSuccess}
+                    />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {imageUrls.map((url, index) => (
+                        <div key={index} className="relative">
+                            <img
+                                src={url}
+                                alt={`${type} ${index + 1}`}
+                                className="w-full h-auto object-cover"
+                            />
+                            <DeletePictureButton
+                                imageUrl={url}
+                                onDeleteSuccess={handleDeleteSuccess}
+                            />
+                        </div>
+                    ))}
+                </div>
+            </section>
         );
-    };
-
-    return (
-        <section className="p-4 bg-gray-100">
-            <div className="flex justify-between items-center">
-                <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">
-                    {type}
-                </h1>
-                <AddPictureButton
-                    type={type}
-                    onUploadSuccess={handleUploadSuccess}
-                />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {imageUrls.map((url, index) => (
-                    <div key={index} className="relative">
-                        <img
-                            src={url}
-                            alt={`${type} ${index + 1}`}
-                            className="w-full h-auto object-cover"
-                        />
-                        <DeletePictureButton
-                            imageUrl={url}
-                            onDeleteSuccess={handleDeleteSuccess}
-                        />
-                    </div>
-                ))}
-            </div>
-        </section>
-    );
+    }
 };
 
 export default AdminProjectType;
