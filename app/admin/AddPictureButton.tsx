@@ -8,7 +8,7 @@ type AddPictureButtonProps = {
 };
 
 const AddPictureButton = ({ type, onUploadSuccess }: AddPictureButtonProps) => {
-    const fileInputRef = useRef(null);
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleFileSelect = async (event: any) => {
         const file = event.target.files[0];
@@ -26,7 +26,9 @@ const AddPictureButton = ({ type, onUploadSuccess }: AddPictureButtonProps) => {
     };
 
     const handleButtonClick = () => {
-        fileInputRef.current.click();
+        if (fileInputRef.current) {
+            fileInputRef.current.click();
+        }
     };
 
     return (
