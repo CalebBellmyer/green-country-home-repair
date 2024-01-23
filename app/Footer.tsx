@@ -1,0 +1,33 @@
+const Footer = () => {
+    return (
+        <footer className="bg-gray-800 text-white text-center py-4">
+            <div className="container mx-auto px-6">
+                <div className="flex justify-center mb-4">
+                    {/* Social Media Links */}
+                    <a href="https://twitter.com" className="mx-2">
+                        Twitter
+                    </a>
+                    <a href="https://facebook.com" className="mx-2">
+                        Facebook
+                    </a>
+                    <a href="https://instagram.com" className="mx-2">
+                        Instagram
+                    </a>
+                    {/* Add more social links as needed */}
+                </div>
+                <div>
+                    {/* Footer Navigation */}
+                    <a href="/about" className="mx-2">
+                        About Us
+                    </a>
+                    <a href="/contact" className="mx-2">
+                        Contact
+                    </a>
+                    {/* Add more navigation links as needed */}
+                </div>
+            </div>
+        </footer>
+    );
+};
+
+export default Footer;
