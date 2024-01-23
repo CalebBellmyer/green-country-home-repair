@@ -10,7 +10,7 @@ type AddPictureButtonProps = {
 const AddPictureButton = ({ type, onUploadSuccess }: AddPictureButtonProps) => {
     const fileInputRef = useRef(null);
 
-    const handleFileSelect = async (event) => {
+    const handleFileSelect = async (event: any) => {
         const file = event.target.files[0];
         if (!file) return;
 

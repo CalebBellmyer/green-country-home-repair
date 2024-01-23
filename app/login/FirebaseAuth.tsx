@@ -7,7 +7,7 @@ const FirebaseAuth = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
         try {
             await signInWithEmailAndPassword(auth, email, password);
