@@ -4,6 +4,7 @@ import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "./firebase"; // Adjust the import path as needed
 
 const Hero = () => {
+    if (typeof window === "undefined") return null;
     const [bgImageUrl, setBgImageUrl] = useState("");
 
     useEffect(() => {

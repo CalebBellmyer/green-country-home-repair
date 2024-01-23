@@ -9,6 +9,7 @@ type ProjectTypeProps = {
 };
 
 const ProjectType = ({ type }: ProjectTypeProps) => {
+    if (typeof window === "undefined") return null;
     const [imageUrls, setImageUrls] = useState<string[]>([]);
 
     useEffect(() => {

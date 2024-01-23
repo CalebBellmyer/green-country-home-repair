@@ -10,6 +10,7 @@ type AdminProjectTypeProps = {
 };
 
 const AdminProjectType = ({ type }: AdminProjectTypeProps) => {
+    if (typeof window === "undefined") return null;
     const [imageUrls, setImageUrls] = useState<string[]>([]);
 
     useEffect(() => {

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 
 const Header = () => {
+    if (typeof window === "undefined") return null;
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (

@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 
 const FirebaseAuth = () => {
+    if (typeof window === "undefined") return null;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 //import ReCAPTCHA from "react-google-recaptcha";
 
 const Contact = () => {
+    if (typeof window === "undefined") return null;
     // const [subject, setSubject] = useState("");
     // const [body, setBody] = useState("");
     // const [captchaValue, setCaptchaValue] = useState(null);
