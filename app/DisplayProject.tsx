@@ -3,7 +3,11 @@ import React, { useEffect, useState } from "react";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { storage } from "./firebase";
 
-const DisplayProject = ({ type }) => {
+type ProjectTypeProps = {
+    type: string;
+};
+
+const DisplayProject = ({ type }: ProjectTypeProps) => {
     const [imageUrls, setImageUrls] = useState<string[]>([]);
 
     useEffect(() => {

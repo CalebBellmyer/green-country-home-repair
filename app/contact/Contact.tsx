@@ -1,22 +1,22 @@
 "use client";
 import React, { useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
+//import ReCAPTCHA from "react-google-recaptcha";
 
 const Contact = () => {
-    const [subject, setSubject] = useState("");
-    const [body, setBody] = useState("");
-    const [captchaValue, setCaptchaValue] = useState(null);
+    // const [subject, setSubject] = useState("");
+    // const [body, setBody] = useState("");
+    // const [captchaValue, setCaptchaValue] = useState(null);
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        if (!captchaValue) {
-            alert("Please verify you are not a robot.");
-            return;
-        }
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    //     if (!captchaValue) {
+    //         alert("Please verify you are not a robot.");
+    //         return;
+    //     }
 
-        // Send data to the server-side for email processing
-        // Example: POST request to your API endpoint
-    };
+    //     // Send data to the server-side for email processing
+    //     // Example: POST request to your API endpoint
+    // };
 
     return (
         <div>WIP</div>
