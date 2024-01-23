@@ -1,7 +1,15 @@
 import { ref, deleteObject } from "firebase/storage";
 import { storage } from "../firebase"; // Adjust the import path as needed
 
-const DeletePictureButton = ({ imageUrl, onDeleteSuccess }) => {
+type DeletePictureButtonProps = {
+    imageUrl: string;
+    onDeleteSuccess: (url: string) => void;
+};
+
+const DeletePictureButton = ({
+    imageUrl,
+    onDeleteSuccess,
+}: DeletePictureButtonProps) => {
     const deleteImage = async () => {
         const imageRef = ref(storage, imageUrl);
 

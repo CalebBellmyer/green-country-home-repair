@@ -2,7 +2,12 @@ import { useRef } from "react";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebase"; // Adjust the import path as needed
 
-const AddPictureButton = ({ type, onUploadSuccess }) => {
+type AddPictureButtonProps = {
+    type: string;
+    onUploadSuccess: (url: string) => void;
+};
+
+const AddPictureButton = ({ type, onUploadSuccess }: AddPictureButtonProps) => {
     const fileInputRef = useRef(null);
 
     const handleFileSelect = async (event) => {
