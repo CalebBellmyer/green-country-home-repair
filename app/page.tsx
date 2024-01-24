@@ -1,3 +1,4 @@
+"use client";
 import Header from "./Header";
 import ProjectType from "./ProjectType";
 import Footer from "./Footer";
