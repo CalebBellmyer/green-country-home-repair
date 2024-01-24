@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { storage } from "./firebase";
@@ -11,21 +10,24 @@ const DisplayProject = ({ type }: ProjectTypeProps) => {
     const [imageUrls, setImageUrls] = useState<string[]>([]);
 
     useEffect(() => {
-        const fetchImages = async () => {
-            const folderRef = ref(storage, type);
-            try {
-                const result = await listAll(folderRef);
-                const urlPromises = result.items.map((itemRef) =>
-                    getDownloadURL(itemRef)
-                );
-                const urls = await Promise.all(urlPromises);
-                setImageUrls(urls);
-            } catch (error) {
-                console.error("Error fetching images:", error);
-            }
-        };
+        // Ensure Firebase calls are made only on the client side
+        if (typeof window !== "undefined") {
+            const fetchImages = async () => {
+                const folderRef = ref(storage, type);
+                try {
+                    const result = await listAll(folderRef);
+                    const urlPromises = result.items.map((itemRef) =>
+                        getDownloadURL(itemRef)
+                    );
+                    const urls = await Promise.all(urlPromises);
+                    setImageUrls(urls);
+                } catch (error) {
+                    console.error("Error fetching images:", error);
+                }
+            };
 
-        fetchImages();
+            fetchImages();
+        }
     }, [type]);
 
     return (
