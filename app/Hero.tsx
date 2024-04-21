@@ -8,20 +8,19 @@ const Hero = () => {
     const [bgImageUrl, setBgImageUrl] = useState("");
 
     useEffect(() => {
-        if (typeof window !== "undefined") {
-            // Ensure window is available
-            const fetchImage = async () => {
-                const storageRef = ref(storage, "/Hero.jpg"); // Update path accordingly
-                try {
-                    const url = await getDownloadURL(storageRef);
-                    setBgImageUrl(url);
-                } catch (error) {
-                    console.error("Error fetching image from Firebase:", error);
-                }
-            };
-
-            fetchImage();
-        }
+        // if (typeof window !== "undefined") {
+        //     // Ensure window is available
+        //     const fetchImage = async () => {
+        //         const storageRef = ref(storage, "/Hero.jpg"); // Update path accordingly
+        //         try {
+        //             const url = await getDownloadURL(storageRef);
+        //             setBgImageUrl(url);
+        //         } catch (error) {
+        //             console.error("Error fetching image from Firebase:", error);
+        //         }
+        //     };
+        //     fetchImage();
+        // }
     }, []);
 
     return (
