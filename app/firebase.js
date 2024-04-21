@@ -36,7 +36,7 @@ signInWithEmailAndPassword(auth, "email", "password")
         const errorMessage = error.message;
     });
 // Initialize the FirebaseUI Widget using Firebase.
-const firebaseui = require("firebaseui");
-var ui = new firebaseui.auth.AuthUI(auth);
+// const firebaseui = require("firebaseui");
+// var ui = new firebaseui.auth.AuthUI(auth);
 
-export { storage, app, ui, auth };
+export { storage, app, auth };
