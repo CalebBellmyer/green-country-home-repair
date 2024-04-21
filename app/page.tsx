@@ -10,9 +10,9 @@ export default function Home() {
             <Header />
             {/* <Hero /> */}
 
-            {/* <ProjectType type="Kitchens" />
+            <ProjectType type="Kitchens" />
             <ProjectType type="Bathrooms" />
-            <ProjectType type="Decks" /> */}
+            <ProjectType type="Decks" />
 
             <Footer />
         </main>
