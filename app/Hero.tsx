@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "./firebase"; // Adjust the import path as needed
+import Image from "next/image";
 
 const Hero = () => {
     const [bgImageUrl, setBgImageUrl] = useState("");
@@ -21,10 +22,11 @@ const Hero = () => {
     }, []);
 
     return (
-        <div
-            className="hero bg-cover bg-center h-96 text-white text-center p-12 md:p-24"
-            style={{ backgroundImage: `url(${bgImageUrl})` }}
-        ></div>
+        <>
+            {bgImageUrl && (
+                <Image src={bgImageUrl} alt="Hero Image" fill={true} />
+            )}
+        </>
     );
 };
 

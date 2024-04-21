@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 
 const Header = () => {
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-    const [isMenuOpen, setIsMenuOpen] = useState(!isMobile);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
         <header className="bg-primary shadow-md z-50">
