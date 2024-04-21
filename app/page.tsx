@@ -7,14 +7,14 @@ import Footer from "./Footer";
 export default function Home() {
     return (
         <main className="flex flex-col min-h-screen w-full">
-            <Header />
+            {/* <Header /> */}
             <Hero />
 
             {/* <ProjectType type="Kitchens" />
             <ProjectType type="Bathrooms" />
             <ProjectType type="Decks" /> */}
 
-            <Footer />
+            {/* <Footer /> */}
         </main>
     );
 }
