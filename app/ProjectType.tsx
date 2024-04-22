@@ -1,7 +1,6 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
-import { ref, getDownloadURL, listAll } from "firebase/storage";
-import { storage } from "./firebase";
 import Carousel from "./Carousel";
 
 type ProjectTypeProps = {
@@ -12,22 +11,16 @@ const ProjectType = ({ type }: ProjectTypeProps) => {
     const [imageUrls, setImageUrls] = useState<string[]>([]);
 
     useEffect(() => {
-        const fetchImages = async () => {
-            const folderRef = ref(storage, type); // Now correctly using the 'type' prop
-            try {
-                const result = await listAll(folderRef);
-                const urlPromises = result.items.map((itemRef) =>
-                    getDownloadURL(itemRef)
-                );
-                const urls = await Promise.all(urlPromises);
-                setImageUrls(urls);
-            } catch (error) {
-                console.error("Error fetching images:", error);
-            }
-        };
-
-        fetchImages();
-    }, [type]); // Adding 'type' as a dependency for useEffect
+        fetch(`/api/ProjectImageFetcher?type=${encodeURIComponent(type)}`) // Include the type in API call if needed
+            .then((response) => response.json())
+            .then((data) => {
+                // Assuming data.pictures is an array of image URLs
+                if (data.pictures && data.pictures.length > 0) {
+                    setImageUrls(data.pictures);
+                }
+            })
+            .catch((error) => console.error("Error fetching images:", error));
+    }, [type]); // type is now a dependency, effect re-runs when type changes
 
     return (
         <section className="flex flex-col items-center justify-center p-4 bg-gray-100">
@@ -35,8 +28,6 @@ const ProjectType = ({ type }: ProjectTypeProps) => {
                 {type}
             </h1>
             <div className="w-full max-w-4xl mx-auto">
-                {" "}
-                {/* Adjusted max width */}
                 {imageUrls.length > 0 ? (
                     <Carousel images={imageUrls} />
                 ) : (

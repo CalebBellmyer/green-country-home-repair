@@ -17,7 +17,7 @@ const Hero = () => {
     }, []); // Empty dependency array means this effect runs once on mount
 
     return (
-        <>
+        <div className="relative p-72">
             {bgImageUrl && (
                 <Image
                     src={bgImageUrl}
@@ -26,7 +26,7 @@ const Hero = () => {
                     objectFit="cover"
                 />
             )}
-        </>
+        </div>
     );
 };
 
