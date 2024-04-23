@@ -7,7 +7,7 @@ type ProjectTypeProps = {
     type: string;
 };
 
-export default function Kitchens({ type }: ProjectTypeProps) {
+export default function Bathrooms() {
     const [imageUrls, setImageUrls] = useState<string[]>([]);
 
     useEffect(() => {
@@ -21,7 +21,7 @@ export default function Kitchens({ type }: ProjectTypeProps) {
                 }
             })
             .catch((error) => console.error("Error fetching images:", error));
-    }, [type]); // 'type' is now a dependency, effect re-runs when 'type' changes
+    }, []); // 'type' is now a dependency, effect re-runs when 'type' changes
 
     return (
         <main className="flex flex-col min-h-screen w-full">
@@ -32,7 +32,7 @@ export default function Kitchens({ type }: ProjectTypeProps) {
                         <img
                             key={index}
                             src={url}
-                            alt={`Kitchen type ${type}`}
+                            alt={`Bathroom Project`}
                             className="w-full h-auto"
                         />
                     ))}
