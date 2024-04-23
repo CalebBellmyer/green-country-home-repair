@@ -7,7 +7,10 @@ const Footer = () => {
                     <a href="https://twitter.com" className="mx-2">
                         Twitter
                     </a>
-                    <a href="https://facebook.com" className="mx-2">
+                    <a
+                        href="https://www.facebook.com/RepairDoneRight"
+                        className="mx-2"
+                    >
                         Facebook
                     </a>
                     <a href="https://instagram.com" className="mx-2">
