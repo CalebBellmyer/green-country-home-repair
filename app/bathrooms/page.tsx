@@ -36,7 +36,9 @@ export default function Bathrooms() {
                     ))}
                 </div>
             </div>
-            <Footer />
+            <div className="fixed inset-x-0 bottom-0">
+                <Footer />
+            </div>
         </main>
     );
 }
