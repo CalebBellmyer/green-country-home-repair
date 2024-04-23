@@ -27,8 +27,8 @@ const Hero = () => {
                         src={bgImageUrl}
                         alt="Picture of Owners"
                         fill={true}
-                        objectPosition="50% 30%"
-                        className="max-h-[700px]"
+                        className="max-h-[700px] object-top"
+                        priority={true}
                     />
                 )}
             </div>
