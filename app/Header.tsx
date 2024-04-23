@@ -30,13 +30,19 @@ const Header = () => {
                     } bg-primary md:bg-transparent absolute md:relative top-16 md:top-auto left-0 w-full md:w-auto p-6 md:p-0 transition-all duration-300 ease-in-out`}
                 >
                     <li>
-                        <Link href="/kitchens">Kitchens</Link>
+                        <Link href="/kitchens" className="text-white">
+                            Kitchens
+                        </Link>
                     </li>
                     <li>
-                        <Link href="/bathrooms">Bathrooms</Link>
+                        <Link href="/bathrooms" className="text-white">
+                            Bathrooms
+                        </Link>
                     </li>
                     <li>
-                        <Link href="/decks">Decks</Link>
+                        <Link href="/decks" className="text-white">
+                            Decks
+                        </Link>
                     </li>
                     {/* Add more navigation items here */}
                 </ul>
