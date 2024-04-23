@@ -21,9 +21,9 @@ const Hero = () => {
             {bgImageUrl && (
                 <Image
                     src={bgImageUrl}
-                    alt="Hero Image"
-                    layout="fill"
-                    objectFit="cover"
+                    alt="Picture of Owners"
+                    fill={true}
+                    style={{ objectFit: "contain", maxWidth: "100vw" }}
                 />
             )}
         </div>
