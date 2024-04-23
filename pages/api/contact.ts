@@ -15,8 +15,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         Messages: [
             {
                 From: {
-                    Email: "cjbellmyer5984@gmail.com",
-                    Name: "Caleb",
+                    Email: `cjbellmyer5984@gmail.com`,
+                    Name: `${name}`,
                 },
                 To: [
                     {
@@ -28,7 +28,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                 TextPart: `${message} 
                     my email adress is ${email}
                     `,
-                HTMLPart: `<p>${message}</p><br /><h3>My email adress: ${email}</h3><br /><h3>My phone number: ${phone}`,
+                HTMLPart: `<p>${message}</p><br /><h3>My name is: ${name}</h3><h3>My email adress: ${email}</h3><br /><h3>My phone number: ${phone}`,
             },
         ],
     });
