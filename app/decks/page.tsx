@@ -36,9 +36,8 @@ export default function Decks() {
                     ))}
                 </div>
             </div>
-            <div className="fixed inset-x-0 bottom-0">
-                <Footer />
-            </div>
+
+            <Footer />
         </main>
     );
 }

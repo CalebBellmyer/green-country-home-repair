@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Carousel from "./Carousel";
+import Link from "next/link";
 
 type ProjectTypeProps = {
     type: string;
@@ -24,9 +25,9 @@ const ProjectType = ({ type }: ProjectTypeProps) => {
 
     return (
         <section className="flex flex-col items-center justify-center p-4 bg-gray-100">
-            <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">
-                {type}
-            </h1>
+            <Link href={`/${type.toLowerCase()}`}>
+                <span className="text-lg font-bold">{type}</span>
+            </Link>
             <div className="w-full max-w-4xl mx-auto">
                 {imageUrls.length > 0 ? (
                     <Carousel images={imageUrls} />
