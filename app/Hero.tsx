@@ -17,13 +17,19 @@ const Hero = () => {
     }, []); // Empty dependency array means this effect runs once on mount
 
     return (
-        <div
-            className="relative w-full max-h-24 overflow-hidden "
-            style={{ paddingTop: "56.25%" }}
-        >
-            {bgImageUrl && (
-                <Image src={bgImageUrl} alt="Picture of Owners" fill />
-            )}
+        <div className="flex justify-center max-h-[700px] overflow-hidden">
+            <div
+                className="relative w-full max-h-24 overflow-hidden lg:max-w-screen-lg"
+                style={{ paddingTop: "56.25%" }}
+            >
+                {bgImageUrl && (
+                    <Image
+                        src={bgImageUrl}
+                        alt="Picture of Owners"
+                        fill={true}
+                    />
+                )}
+            </div>
         </div>
     );
 };
