@@ -27,7 +27,7 @@ export default function Decks() {
         <main className="flex flex-col min-h-screen w-full">
             <Header />
             <div className="w-full max-w-4xl mx-auto p-4">
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {imageUrls.map((url, index) => (
                         <img
                             key={index}
