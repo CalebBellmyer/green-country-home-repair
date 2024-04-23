@@ -24,7 +24,7 @@ const Header = () => {
                 <ul
                     className={`flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 ${
                         isMenuOpen ? "block" : "hidden md:flex"
-                    } bg-primary md:bg-transparent absolute md:relative top-20 md:top-auto left-0 w-full md:w-auto p-6 md:p-0 transition-all duration-300 ease-in-out`}
+                    } bg-primary md:bg-transparent absolute md:relative top-20 md:top-auto left-0 w-full md:w-auto p-6 md:p-0 transition-all duration-300 ease-in-out z-10 `}
                 >
                     <li>
                         <Link href="/kitchens" className="text-white">
