@@ -4,19 +4,13 @@ const Footer = () => {
             <div className="container mx-auto px-6">
                 <div className="flex justify-center mb-4">
                     {/* Social Media Links */}
-                    <a href="https://twitter.com" className="mx-2">
-                        Twitter
-                    </a>
+
                     <a
                         href="https://www.facebook.com/RepairDoneRight"
                         className="mx-2"
                     >
                         Facebook
                     </a>
-                    <a href="https://instagram.com" className="mx-2">
-                        Instagram
-                    </a>
-                    {/* Add more social links as needed */}
                 </div>
                 <div>
                     {/* Footer Navigation */}
