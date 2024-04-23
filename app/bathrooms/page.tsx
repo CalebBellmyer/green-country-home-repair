@@ -11,17 +11,15 @@ export default function Bathrooms() {
     const [imageUrls, setImageUrls] = useState<string[]>([]);
 
     useEffect(() => {
-        // Include the type in the API call if needed
         fetch(`/api/ProjectImageFetcher?type=${"Bathrooms"}`)
             .then((response) => response.json())
             .then((data) => {
-                // Assuming data.pictures is an array of image URLs
                 if (data.pictures && data.pictures.length > 0) {
                     setImageUrls(data.pictures);
                 }
             })
             .catch((error) => console.error("Error fetching images:", error));
-    }, []); // 'type' is now a dependency, effect re-runs when 'type' changes
+    }, []);
 
     return (
         <main className="flex flex-col min-h-screen w-full">
