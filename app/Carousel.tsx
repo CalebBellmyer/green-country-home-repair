@@ -1,5 +1,7 @@
+"use client";
 import React, { useState } from "react";
 import CarouselButton from "./CarouselButton";
+import { useEffect } from "react";
 
 export interface CarouselProps {
     images: string[];
@@ -19,6 +21,11 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
         const newIndex = isLastImage ? 0 : currentIndex + 1;
         setCurrentIndex(newIndex);
     };
+
+    useEffect(() => {
+        const interval = setInterval(goToNext, 6000);
+        return () => clearInterval(interval); // This is the cleanup function to clear the interval
+    }, [currentIndex]);
 
     return (
         <div className="flex items-center justify-center">
