@@ -8,7 +8,7 @@ export default function Home() {
         <main className="flex flex-col min-h-screen w-full">
             <Header />
             <Hero />
-            <div className="m-1">
+            <div className="m-1 justify-center">
                 <ProjectType type="Kitchens" />
                 <ProjectType type="Bathrooms" />
                 <ProjectType type="Decks" />
