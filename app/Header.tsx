@@ -41,6 +41,11 @@ const Header = () => {
                             Decks
                         </Link>
                     </li>
+                    <li>
+                        <Link href="/contact" className="text-white">
+                            Contact
+                        </Link>
+                    </li>
                     {/* Add more navigation items here */}
                 </ul>
             </nav>
