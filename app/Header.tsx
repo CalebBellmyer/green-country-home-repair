@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import HamburgerMenu from "./HamburgerMenu";
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,14 +15,10 @@ const Header = () => {
                 </div>
 
                 {/* Hamburger Menu Icon for Mobile */}
-                <div className="md:hidden">
-                    <button
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        type="button"
-                    >
-                        <span>Menu</span> {/* Replace with icon if preferred */}
-                    </button>
-                </div>
+                <HamburgerMenu
+                    setIsMenuOpen={setIsMenuOpen}
+                    isMenuOpen={isMenuOpen}
+                />
 
                 {/* Navigation Links */}
                 <ul
