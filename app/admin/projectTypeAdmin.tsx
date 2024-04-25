@@ -7,6 +7,7 @@ import {
     ref as storageRef,
     uploadBytes,
     getDownloadURL,
+    deleteObject,
 } from "firebase/storage";
 
 type ProjectTypeProps = {
@@ -46,6 +47,24 @@ const ProjectTypeAdmin = ({ type: type }: ProjectTypeProps) => {
             setError("No file selected");
         }
     };
+
+    const deleteImage = (imageUrl: string) => {
+        if (window.confirm("Are you sure you want to delete this image?")) {
+            const fileRef = storageRef(storage, imageUrl);
+
+            deleteObject(fileRef)
+                .then(() => {
+                    setImageUrls((prevUrls) =>
+                        prevUrls.filter((url) => url !== imageUrl)
+                    );
+                    console.log("File deleted successfully");
+                })
+                .catch((error) => {
+                    console.error("Error removing file: ", error);
+                });
+        }
+    };
+
     useEffect(() => {
         fetch(`/api/ProjectImageFetcher?type=${encodeURIComponent(type)}`) // Include the type in API call if needed
             .then((response) => response.json())
@@ -70,7 +89,13 @@ const ProjectTypeAdmin = ({ type: type }: ProjectTypeProps) => {
                                 width={500}
                                 height={300}
                             />
-                            <button type="button"></button>
+                            <button
+                                type="button"
+                                onClick={() => deleteImage(imageUrl)}
+                                className="mt-2 text-red-500 hover:text-red-700"
+                            >
+                                Delete
+                            </button>
                         </div>
                     ))
                 ) : (
