@@ -17,7 +17,7 @@ const Hero = () => {
     }, []); // Empty dependency array means this effect runs once on mount
 
     return (
-        <div className="flex justify-center max-h-[700px] overflow-hidden max-w-[500]">
+        <div className="flex justify-center max-h-[700px] overflow-hidden max-w-[500] bg-gray-100">
             <div
                 className="relative w-full max-h-24 overflow-hidden lg:max-w-screen-lg"
                 style={{ paddingTop: "56.25%" }}

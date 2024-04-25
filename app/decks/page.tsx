@@ -22,18 +22,20 @@ export default function Decks() {
     }, []);
 
     return (
-        <main className="flex flex-col min-h-screen w-full">
-            <Header />
-            <div className="w-full max-w-4xl mx-auto p-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {imageUrls.map((url, index) => (
-                        <img
-                            key={index}
-                            src={url}
-                            alt={`Deck Project`}
-                            className="w-full h-auto"
-                        />
-                    ))}
+        <main className="flex flex-col min-h-screen w-full bg-gray-100">
+            <div className="flex-grow">
+                <Header />
+                <div className="w-full max-w-4xl mx-auto p-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        {imageUrls.map((url, index) => (
+                            <img
+                                key={index}
+                                src={url}
+                                alt={`Deck Project`}
+                                className="w-full h-auto"
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
 

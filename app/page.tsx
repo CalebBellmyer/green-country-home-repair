@@ -5,7 +5,7 @@ import Footer from "./Footer";
 
 export default function Home() {
     return (
-        <main className="flex flex-col min-h-screen w-full">
+        <main className="flex flex-col min-h-screen w-full bg-gray-100">
             <div>
                 <Header />
                 <Hero />

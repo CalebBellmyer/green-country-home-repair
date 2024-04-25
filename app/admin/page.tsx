@@ -7,7 +7,7 @@ const Page = () => {
     const [currentType, setCurrentType] = useState<string>("Bathrooms");
 
     return (
-        <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
+        <div className="flex h-screen flex-col md:flex-row md:overflow-hidden bg-gray-100">
             <div className="w-full flex-none md:w-64">
                 <SideNav setType={setCurrentType} />
             </div>
