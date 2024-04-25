@@ -59,7 +59,7 @@ const ProjectTypeAdmin = ({ type: type }: ProjectTypeProps) => {
     }, [type]); // type is now a dependency, effect re-runs when type changes
 
     return (
-        <section className="flex flex-col  items-center justify-center p-4 bg-gray-100 ">
+        <section className="flex flex-col  items-center j p-4 bg-gray-100 ">
             <div className="w-full max-w-4xl mx-auto md:grid md:grid-cols-3 ">
                 {imageUrls.length > 0 ? (
                     imageUrls.map((imageUrl, index) => (
@@ -79,12 +79,31 @@ const ProjectTypeAdmin = ({ type: type }: ProjectTypeProps) => {
                     </p>
                 )}
             </div>
-            <div>
-                <input type="file" onChange={onFileChange} />
-                <button onClick={uploadFile} disabled={uploading}>
-                    Upload
-                </button>
-                {error && <p className="text-color-red-700">{error}</p>}
+            <div className="flex justify-end w-full">
+                <div className="flex items-center justify-center space-x-4 p-4">
+                    <div className="w-full sm:w-auto">
+                        <input
+                            type="file"
+                            onChange={onFileChange}
+                            className="file:mr-4 file:w-full file:py-2 file:px-4 file:rounded-md file:border-0
+                           file:text-sm file:font-semibold file:bg-primary file:text-white
+                           hover:file:bg-tertiary hover:file:shadow-lg"
+                        />
+                    </div>
+                    <div className="w-full sm:w-auto">
+                        <button
+                            onClick={uploadFile}
+                            disabled={uploading}
+                            className={`w-full py-2 px-4 text-sm font-semibold rounded-md text-white bg-primary
+                            hover:bg-tertiary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+                                uploading ? "opacity-50 cursor-not-allowed" : ""
+                            }`}
+                        >
+                            {uploading ? "Uploading..." : "Upload"}
+                        </button>
+                    </div>
+                    {error && <p className="text-red-500 text-sm">{error}</p>}
+                </div>
             </div>
         </section>
     );
