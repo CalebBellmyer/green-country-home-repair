@@ -2,7 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { storage } from "../firebase";
+import {
+    ref as storageRef,
+    uploadBytes,
+    getDownloadURL,
+} from "firebase/storage";
 
 type ProjectTypeProps = {
     type: string;
@@ -10,7 +15,37 @@ type ProjectTypeProps = {
 
 const ProjectTypeAdmin = ({ type }: ProjectTypeProps) => {
     const [imageUrls, setImageUrls] = useState<string[]>([]);
+    const [file, setFile] = useState<File | null>(null);
+    const [uploading, setUploading] = useState<boolean>(false);
+    const [error, setError] = useState<string | null>(null);
 
+    const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newFile = event.target.files ? event.target.files[0] : null;
+        setFile(newFile);
+    };
+
+    const uploadFile = () => {
+        if (file) {
+            const uploadRef = storageRef(storage, `${type}/${file.name}`);
+            setUploading(true);
+
+            uploadBytes(uploadRef, file)
+                .then((snapshot) => {
+                    getDownloadURL(snapshot.ref).then((downloadURL) => {
+                        console.log("File available at", downloadURL);
+                        setImageUrls((prevUrls) => [...prevUrls, downloadURL]); // Update the imageUrls state
+                        setUploading(false);
+                    });
+                })
+                .catch((error) => {
+                    console.error("Upload failed:", error);
+                    setError("Upload failed");
+                    setUploading(false);
+                });
+        } else {
+            setError("No file selected");
+        }
+    };
     useEffect(() => {
         fetch(`/api/ProjectImageFetcher?type=${encodeURIComponent(type)}`) // Include the type in API call if needed
             .then((response) => response.json())
@@ -44,6 +79,13 @@ const ProjectTypeAdmin = ({ type }: ProjectTypeProps) => {
                         Loading images...
                     </p>
                 )}
+            </div>
+            <div>
+                <input type="file" onChange={onFileChange} />
+                <button onClick={uploadFile} disabled={uploading}>
+                    Upload
+                </button>
+                {error && <p className="text-color-red-700">{error}</p>}
             </div>
         </section>
     );
