@@ -3,7 +3,7 @@ import { useState } from "react";
 import SideNav from "./SideNav";
 import ProjectTypeAdmin from "./projectTypeAdmin";
 
-const page = () => {
+const Page = () => {
     const [currentType, setCurrentType] = useState<string>("Bathrooms");
 
     return (
@@ -16,4 +16,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;
