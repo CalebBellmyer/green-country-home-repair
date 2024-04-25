@@ -1,6 +1,11 @@
 import React from "react";
 
-const AdminNavButton = ({ type, setType }) => {
+type AdminNavButtonProps = {
+    type: string;
+    setType: (type: string) => void;
+};
+
+const AdminNavButton = ({ type, setType }: AdminNavButtonProps) => {
     return (
         <div className="rounded-lg py-1">
             <button

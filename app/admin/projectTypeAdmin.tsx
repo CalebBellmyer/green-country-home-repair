@@ -13,7 +13,7 @@ type ProjectTypeProps = {
     type: string;
 };
 
-const ProjectTypeAdmin = ({ type }: ProjectTypeProps) => {
+const ProjectTypeAdmin = ({ type: type }: ProjectTypeProps) => {
     const [imageUrls, setImageUrls] = useState<string[]>([]);
     const [file, setFile] = useState<File | null>(null);
     const [uploading, setUploading] = useState<boolean>(false);
@@ -63,9 +63,8 @@ const ProjectTypeAdmin = ({ type }: ProjectTypeProps) => {
             <div className="w-full max-w-4xl mx-auto md:grid md:grid-cols-3 ">
                 {imageUrls.length > 0 ? (
                     imageUrls.map((imageUrl, index) => (
-                        <div className="md:px-2 md:py-2">
+                        <div key={index} className="md:px-2 md:py-2">
                             <Image
-                                key={index}
                                 src={imageUrl}
                                 alt={`${type} image ${index + 1}`}
                                 width={500}
