@@ -20,6 +20,9 @@ const Footer = () => {
                     <a href="/contact" className="mx-2">
                         Contact
                     </a>
+                    <a href="/login" className="mx-2">
+                        Employee Login
+                    </a>
                     {/* Add more navigation links as needed */}
                 </div>
             </div>
