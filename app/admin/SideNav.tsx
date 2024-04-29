@@ -1,16 +1,25 @@
-import logout from "@/pages/api/logout";
 import AdminNavButton from "./AdminNavButton";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { getAuth, signOut } from "firebase/auth";
 
 type SideNavProps = {
     setType: (type: string) => void;
 };
-const handleLogout = () => {
-    logout();
-    console.log("logout");
-};
 
 export default function SideNav({ setType }: SideNavProps) {
+    const router = useRouter();
+
+    const handleLogout = async () => {
+        const auth = getAuth();
+        try {
+            await signOut(auth);
+            router.push("/");
+        } catch (error) {
+            console.error("logout failed", error);
+        }
+    };
+
     return (
         <div className="flex h-full flex-col px-3 py-4 md:px-2 bg-primary rounded-md ">
             <div className="text-lg font-bold text-white text-center">
