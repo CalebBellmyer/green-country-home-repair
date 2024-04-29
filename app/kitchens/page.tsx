@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectDisplay from "../ProjectDisplay";
+import ProjectDisplay from "../components/ProjectDisplay";
 
 const page = () => {
     return <ProjectDisplay type="Kitchens" />;

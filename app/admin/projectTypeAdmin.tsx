@@ -9,7 +9,7 @@ import {
     getDownloadURL,
     deleteObject,
 } from "firebase/storage";
-import PaginationButton from "../PaginationButton";
+import PaginationButton from "../components/PaginationButton";
 
 type ProjectTypeProps = {
     type: string;
