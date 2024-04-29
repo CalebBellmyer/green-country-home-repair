@@ -26,7 +26,7 @@ const ProjectType: React.FC<ProjectTypeProps> = ({ type }) => {
                 }
             })
             .catch((error) => console.error("Error fetching images:", error));
-    }, [type, currentPage]);
+    }, [type]);
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);

@@ -6,22 +6,23 @@ import Link from "next/link";
 
 type ProjectTypeProps = {
     type: string;
+    maxImages?: number;
 };
 
-const ProjectType = ({ type }: ProjectTypeProps) => {
+const ProjectType = ({ type, maxImages = undefined }: ProjectTypeProps) => {
     const [imageUrls, setImageUrls] = useState<string[]>([]);
 
     useEffect(() => {
-        fetch(`/api/ProjectImageFetcher?type=${encodeURIComponent(type)}`) // Include the type in API call if needed
+        fetch(`/api/ProjectImageFetcher?type=${type}&limit=${maxImages || ""}`)
             .then((response) => response.json())
             .then((data) => {
                 // Assuming data.pictures is an array of image URLs
                 if (data.pictures && data.pictures.length > 0) {
-                    setImageUrls(data.pictures);
+                    setImageUrls(data.pictures.slice(0, maxImages));
                 }
             })
             .catch((error) => console.error("Error fetching images:", error));
-    }, [type]); // type is now a dependency, effect re-runs when type changes
+    }, [type, maxImages]); // type is now a dependency, effect re-runs when type changes
 
     return (
         <section className="flex flex-col items-center justify-center p-4 bg-gray-100">
