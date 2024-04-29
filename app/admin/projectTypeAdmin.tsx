@@ -9,6 +9,7 @@ import {
     getDownloadURL,
     deleteObject,
 } from "firebase/storage";
+import PaginationButton from "../PaginationButton";
 
 type ProjectTypeProps = {
     type: string;
@@ -19,6 +20,9 @@ const ProjectTypeAdmin = ({ type: type }: ProjectTypeProps) => {
     const [file, setFile] = useState<File | null>(null);
     const [uploading, setUploading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 12;
+    const totalPages = Math.ceil(imageUrls.length / itemsPerPage);
 
     const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newFile = event.target.files ? event.target.files[0] : null;
@@ -34,7 +38,7 @@ const ProjectTypeAdmin = ({ type: type }: ProjectTypeProps) => {
                 .then((snapshot) => {
                     getDownloadURL(snapshot.ref).then((downloadURL) => {
                         console.log("File available at", downloadURL);
-                        setImageUrls((prevUrls) => [...prevUrls, downloadURL]); // Update the imageUrls state
+                        setImageUrls((prevUrls) => [...prevUrls, downloadURL]);
                         setUploading(false);
                     });
                 })
@@ -66,44 +70,60 @@ const ProjectTypeAdmin = ({ type: type }: ProjectTypeProps) => {
     };
 
     useEffect(() => {
-        fetch(`/api/ProjectImageFetcher?type=${encodeURIComponent(type)}`) // Include the type in API call if needed
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+
+        fetch(`/api/ProjectImageFetcher?type=${encodeURIComponent(type)}`)
             .then((response) => response.json())
             .then((data) => {
-                // Assuming data.pictures is an array of image URLs
                 if (data.pictures && data.pictures.length > 0) {
                     setImageUrls(data.pictures);
                 }
             })
             .catch((error) => console.error("Error fetching images:", error));
-    }, [type]); // type is now a dependency, effect re-runs when type changes
+    }, [type, currentPage]); // type and currentPage are a dependency, effect re-runs when type/currentPage changes
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
 
     return (
         <section className="flex flex-col  items-center j p-4 bg-gray-100 ">
             <div className="w-full max-w-4xl mx-auto md:grid md:grid-cols-3 ">
                 {imageUrls.length > 0 ? (
-                    imageUrls.map((imageUrl, index) => (
-                        <div key={index} className="md:px-2 md:py-2">
-                            <Image
-                                src={imageUrl}
-                                alt={`${type} image ${index + 1}`}
-                                width={500}
-                                height={300}
-                            />
-                            <button
-                                type="button"
-                                onClick={() => deleteImage(imageUrl)}
-                                className="mt-2 text-red-500 hover:text-red-700"
-                            >
-                                Delete
-                            </button>
-                        </div>
-                    ))
+                    imageUrls
+                        .slice(
+                            (currentPage - 1) * itemsPerPage,
+                            currentPage * itemsPerPage
+                        )
+                        .map((imageUrl, index) => (
+                            <div key={index} className="md:px-2 md:py-2">
+                                <Image
+                                    src={imageUrl}
+                                    alt={`${type} image ${index + 1}`}
+                                    width={500}
+                                    height={300}
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => deleteImage(imageUrl)}
+                                    className="mt-2 text-red-500 hover:text-red-700"
+                                >
+                                    Delete
+                                </button>
+                            </div>
+                        ))
                 ) : (
                     <p className="text-center text-gray-600">
                         Loading images...
                     </p>
                 )}
             </div>
+            <PaginationButton
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+            />
             <div className="flex justify-end w-full">
                 <div className="flex items-center justify-center space-x-4 p-4">
                     <div className="w-full sm:w-auto">

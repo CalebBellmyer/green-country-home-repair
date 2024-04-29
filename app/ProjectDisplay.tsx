@@ -11,8 +11,8 @@ interface ProjectTypeProps {
 const ProjectType: React.FC<ProjectTypeProps> = ({ type }) => {
     const [imageUrls, setImageUrls] = useState<string[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 12; // This can be a prop if you want flexibility
-    const totalPages = Math.ceil(imageUrls.length / itemsPerPage); // Total pages calculated based on the data length
+    const itemsPerPage = 12;
+    const totalPages = Math.ceil(imageUrls.length / itemsPerPage);
 
     useEffect(() => {
         const start = (currentPage - 1) * itemsPerPage;
