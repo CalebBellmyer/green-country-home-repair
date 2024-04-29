@@ -35,7 +35,7 @@ export default function SideNav({ setType }: SideNavProps) {
                 <div>
                     <button
                         onClick={handleLogout}
-                        className="text-white bg-red-500 p-2 rounded-md w-full"
+                        className="text-white bg-red-500 p-2 rounded-md w-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
                         Logout
                     </button>

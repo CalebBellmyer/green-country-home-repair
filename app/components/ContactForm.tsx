@@ -23,6 +23,7 @@ function ContactForm() {
                     "content-type": "application/json",
                 },
             });
+            window.location.reload();
         } catch (error) {
             console.error("Error", error);
         }

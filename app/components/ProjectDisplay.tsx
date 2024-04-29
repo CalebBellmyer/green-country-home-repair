@@ -15,9 +15,6 @@ const ProjectType: React.FC<ProjectTypeProps> = ({ type }) => {
     const totalPages = Math.ceil(imageUrls.length / itemsPerPage);
 
     useEffect(() => {
-        const start = (currentPage - 1) * itemsPerPage;
-        const end = start + itemsPerPage;
-
         fetch(`/api/ProjectImageFetcher?type=${type}`)
             .then((response) => response.json())
             .then((data) => {

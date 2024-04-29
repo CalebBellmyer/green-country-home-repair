@@ -107,7 +107,7 @@ const ProjectTypeAdmin = ({ type: type }: ProjectTypeProps) => {
                                 <button
                                     type="button"
                                     onClick={() => deleteImage(imageUrl)}
-                                    className="mt-2 text-red-500 hover:text-red-700"
+                                    className="text-white bg-red-500 p-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500  mt-2"
                                 >
                                     Delete
                                 </button>
