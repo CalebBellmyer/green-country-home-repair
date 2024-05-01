@@ -1,7 +1,7 @@
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import ProjectType from "./components/ProjectType";
-import Footer from "./components/Footer";
+import Header from "./_components/Header";
+import Hero from "./_components/Hero";
+import ProjectType from "./_components/ProjectType";
+import Footer from "./_components/Footer";
 
 export default function Home() {
     const maxImages = 6;

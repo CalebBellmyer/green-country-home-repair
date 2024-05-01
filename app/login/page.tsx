@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import useHandleSignInForm from "@/pages/api/handleSignInForm";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../_components/Header";
+import Footer from "../_components/Footer";
 
 const Page = () => {
     const [email, setEmail] = useState("");
