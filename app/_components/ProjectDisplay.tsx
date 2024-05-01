@@ -33,28 +33,32 @@ const ProjectType: React.FC<ProjectTypeProps> = ({ type }) => {
     return (
         <main className="flex flex-col min-h-screen w-full bg-gray-100">
             <Header />
-            <div className="w-full max-w-4xl mx-auto p-4 flex-grow">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {imageUrls
-                        .slice(
-                            (currentPage - 1) * itemsPerPage,
-                            currentPage * itemsPerPage
-                        )
-                        .map((url, index) => (
-                            <div
-                                key={index}
-                                className="flex w-full h-52 relative overflow-hidden rounded-lg shadow-lg "
-                            >
-                                <Image
-                                    src={url}
-                                    alt={`${type} project image ${index + 1}`}
-                                    layout="responsive"
-                                    width={277}
-                                    height={370}
-                                    style={{ objectFit: "cover" }}
-                                />
-                            </div>
-                        ))}
+            <div className="w-full mx-auto p-4 flex-grow">
+                <div className="justify-center flex">
+                    <div className="2xl:w-5/6 grid   grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
+                        {imageUrls
+                            .slice(
+                                (currentPage - 1) * itemsPerPage,
+                                currentPage * itemsPerPage
+                            )
+                            .map((url, index) => (
+                                <div
+                                    key={index}
+                                    className="flex w-72 h-52 relative overflow-hidden rounded-lg shadow-lg "
+                                >
+                                    <Image
+                                        src={url}
+                                        alt={`${type} project image ${
+                                            index + 1
+                                        }`}
+                                        layout="responsive"
+                                        width={277}
+                                        height={200}
+                                        style={{ objectFit: "cover" }}
+                                    />
+                                </div>
+                            ))}
+                    </div>
                 </div>
                 <PaginationButton
                     currentPage={currentPage}
