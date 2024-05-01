@@ -1,3 +1,4 @@
+// pages/index.tsx or pages/index.js
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
@@ -17,15 +18,19 @@ const Hero = () => {
     }, []);
 
     return (
-        <div className="relative overflow-hidden h-64 md:h-96 aspect-w-4 aspect-h-3">
-            <Image
-                src={bgImageUrl} // Replace with your image path
-                alt="Hero"
-                fill
-                style={{ objectFit: "cover" }}
-                className="absolute inset-0 "
-                placeholder="empty"
-            />
+        <div className="flex justify-center w-full">
+            <div className="relative flex justify-center overflow-hidden w-full 2xl:w-5/6 h-[16rem] sm:h-[24rem] md:h-[28rem] lg:h-[36rem]">
+                {bgImageUrl && (
+                    <Image
+                        src={bgImageUrl}
+                        alt="Hero"
+                        fill
+                        style={{ objectFit: "cover" }}
+                        placeholder="empty"
+                        quality={100}
+                    />
+                )}
+            </div>
         </div>
     );
 };
