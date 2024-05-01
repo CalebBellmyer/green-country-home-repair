@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
 import CarouselButton from "./CarouselButton";
+import Image from "next/image";
 
 export interface CarouselProps {
     images: string[];
@@ -25,22 +26,24 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
 
     useEffect(() => {
         const interval = setInterval(next, 6000);
-        return () => clearInterval(interval); // This is the cleanup function to clear the interval
+        return () => clearInterval(interval);
     }, [currentIndex, next]);
 
     return (
-        <div className="flex items-center justify-center">
-            <CarouselButton direction="left" onClick={goToPrevious} />
-            <div className="w-full max-w-2xl h-[400px] relative flex items-center justify-center overflow-hidden">
+        <div className="flex items-center justify-center space-x-4">
+            <CarouselButton direction="left" onClick={goToPrevious} aria-label='right carousel navigation arrow' />
+            <div className="w-full max-w-2xl h-[400px] relative flex items-center justify-center overflow-hidden shadow-lg rounded-lg">
                 {images.length > 0 && (
-                    <img
+                    <Image
                         src={images[currentIndex]}
                         alt={`Slide ${currentIndex + 1}`}
-                        className="w-full h-full object-contain"
+                        layout="fill"
+                        objectFit="cover" // Changed from object-contain to object-cover for better image presentation
+                        className="rounded-lg" // Add rounded corners to the image itself if needed
                     />
                 )}
             </div>
-            <CarouselButton direction="right" onClick={goToNext} />
+            <CarouselButton direction="right" onClick={goToNext} aria-label='left carousel navigation arrow' />
         </div>
     );
 };

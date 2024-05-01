@@ -6,15 +6,15 @@ const Hero = () => {
     const [bgImageUrl, setBgImageUrl] = useState("");
 
     useEffect(() => {
-        fetch("/api/Hero") // Make sure this matches the actual API route path
+        fetch("/api/Hero")
             .then((response) => response.json())
             .then((data) => {
                 if (data.imageUrl) {
-                    setBgImageUrl(data.imageUrl); // Update state with the URL
+                    setBgImageUrl(data.imageUrl);
                 }
             })
             .catch((error) => console.error("Error fetching images:", error));
-    }, []); // Empty dependency array means this effect runs once on mount
+    }, []);
 
     return (
         <div className="flex justify-center max-h-[700px] overflow-hidden max-w-[500] bg-gray-100">

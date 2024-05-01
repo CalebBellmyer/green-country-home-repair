@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import PaginationButton from "./PaginationButton"; // Make sure the import path is correct
+import PaginationButton from "./PaginationButton";
+import Image from "next/image";
 
 interface ProjectTypeProps {
     type: string;
@@ -31,30 +32,33 @@ const ProjectType: React.FC<ProjectTypeProps> = ({ type }) => {
 
     return (
         <main className="flex flex-col min-h-screen w-full bg-gray-100">
-            <div className="flex-grow">
-                <Header />
-                <div className="w-full max-w-4xl mx-auto p-4">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        {imageUrls
-                            .slice(
-                                (currentPage - 1) * itemsPerPage,
-                                currentPage * itemsPerPage
-                            )
-                            .map((url, index) => (
-                                <img
-                                    key={index}
+            <Header />
+            <div className="w-full max-w-4xl mx-auto p-4 flex-grow">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {imageUrls
+                        .slice(
+                            (currentPage - 1) * itemsPerPage,
+                            currentPage * itemsPerPage
+                        )
+                        .map((url, index) => (
+                            <div key={index} className="w-full h-full relative">
+                                <Image
                                     src={url}
-                                    alt={`${type} Project`}
-                                    className="w-full h-auto"
+                                    alt={`${type} project image ${index + 1}`}
+                                    layout="responsive"
+                                    objectFit="cover"
+                                    width={300}
+                                    height={200}
+                                    className="rounded-lg"
                                 />
-                            ))}
-                    </div>
-                    <PaginationButton
-                        currentPage={currentPage}
-                        totalPages={totalPages}
-                        onPageChange={handlePageChange}
-                    />
+                            </div>
+                        ))}
                 </div>
+                <PaginationButton
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={handlePageChange}
+                />
             </div>
             <Footer />
         </main>
