@@ -41,15 +41,17 @@ const ProjectType: React.FC<ProjectTypeProps> = ({ type }) => {
                             currentPage * itemsPerPage
                         )
                         .map((url, index) => (
-                            <div key={index} className="w-full h-full relative">
+                            <div
+                                key={index}
+                                className="flex w-full h-52 relative overflow-hidden rounded-lg shadow-lg "
+                            >
                                 <Image
                                     src={url}
                                     alt={`${type} project image ${index + 1}`}
                                     layout="responsive"
-                                    objectFit="cover"
-                                    width={300}
-                                    height={200}
-                                    className="rounded-lg"
+                                    width={277}
+                                    height={370}
+                                    style={{ objectFit: "cover" }}
                                 />
                             </div>
                         ))}
