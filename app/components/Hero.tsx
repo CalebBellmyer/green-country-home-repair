@@ -17,21 +17,15 @@ const Hero = () => {
     }, []);
 
     return (
-        <div className="flex justify-center max-h-[700px] overflow-hidden max-w-[500] bg-gray-100">
-            <div
-                className="relative w-full max-h-24 overflow-hidden lg:max-w-screen-lg"
-                style={{ paddingTop: "56.25%" }}
-            >
-                {bgImageUrl && (
-                    <Image
-                        src={bgImageUrl}
-                        alt="Picture of Owners"
-                        fill={true}
-                        className="max-h-[700px] object-top"
-                        priority={true}
-                    />
-                )}
-            </div>
+        <div className="relative overflow-hidden h-64 md:h-96 aspect-w-4 aspect-h-3">
+            <Image
+                src={bgImageUrl} // Replace with your image path
+                alt="Hero"
+                fill
+                style={{ objectFit: "cover" }}
+                className="absolute inset-0 "
+                placeholder="empty"
+            />
         </div>
     );
 };
