@@ -11,6 +11,7 @@ type ProjectTypeProps = {
 
 const ProjectType = ({ type, maxImages = undefined }: ProjectTypeProps) => {
     const [imageUrls, setImageUrls] = useState<string[]>([]);
+    maxImages = 1;
 
     useEffect(() => {
         fetch(`/api/ProjectImageFetcher?type=${type}&limit=${maxImages || ""}`)

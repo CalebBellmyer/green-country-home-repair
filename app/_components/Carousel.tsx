@@ -31,19 +31,28 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
 
     return (
         <div className="flex items-center justify-center space-x-4">
-            <CarouselButton direction="left" onClick={goToPrevious} aria-label='right carousel navigation arrow' />
+            <CarouselButton
+                direction="left"
+                onClick={goToPrevious}
+                aria-label="right carousel navigation arrow"
+            />
             <div className="w-full max-w-2xl h-[400px] relative flex items-center justify-center overflow-hidden shadow-lg rounded-lg">
                 {images.length > 0 && (
                     <Image
                         src={images[currentIndex]}
                         alt={`Slide ${currentIndex + 1}`}
-                        layout="fill"
-                        objectFit="cover" // Changed from object-contain to object-cover for better image presentation
+                        fill
+                        style={{ objectFit: "cover" }}
+                        sizes="(min-width: 640px) 640px, 100vw"
                         className="rounded-lg" // Add rounded corners to the image itself if needed
                     />
                 )}
             </div>
-            <CarouselButton direction="right" onClick={goToNext} aria-label='left carousel navigation arrow' />
+            <CarouselButton
+                direction="right"
+                onClick={goToNext}
+                aria-label="left carousel navigation arrow"
+            />
         </div>
     );
 };
