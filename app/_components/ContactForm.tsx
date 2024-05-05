@@ -30,44 +30,51 @@ function ContactForm() {
     };
 
     return (
-        <form onSubmit={onSubmit} className="px-2">
-            <input
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                type="text"
-                placeholder="Name"
-                className="block w-full p-2 mt-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500 focus:ring focus:ring-gray-300 focus:ring-opacity-50"
-            />
-            <input
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                type="tel"
-                placeholder="123-456-7890"
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                className="block w-full p-2 mt-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
-            />
-            <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                placeholder="Email"
-                className="block w-full p-2 mt-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
-            />
-            <textarea
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder="Message"
-                className="block w-full p-2 mt-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
-            ></textarea>
-            <div className="flex justify-center pb-2">
+        <div className="flex justify-center items-center flex-1 mt-24 w-11/12">
+            <form
+                onSubmit={onSubmit}
+                className="space-y-6 bg-white p-8 rounded-lg shadow-lg min-w-[320px]"
+            >
+                <h1 className="text-2xl font-semibold text-center">
+                    Contact Us
+                </h1>
+                <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    type="text"
+                    placeholder="Name"
+                    className="w-full py-2 px-4 rounded-lg border-2 border-gray-300"
+                />
+                <input
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    type="tel"
+                    placeholder="123-456-7890"
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    className="w-full py-2 px-4 rounded-lg border-2 border-gray-300"
+                />
+                <input
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    type="email"
+                    placeholder="Email"
+                    className="w-full py-2 px-4 rounded-lg border-2 border-gray-300"
+                />
+                <textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="Message"
+                    className="w-full py-2 px-4 rounded-lg border-2 border-gray-300"
+                    rows={4}
+                ></textarea>
                 <button
                     type="submit"
-                    className="px-4 py-2 mt-4 text-white bg-primary rounded-md shadow   "
+                    className="bg-primary w-full text-lg text-white rounded-lg active:bg-tertiary active:shadow-lg focus:outline-none py-2"
                 >
                     Submit
                 </button>
-            </div>
-        </form>
+            </form>
+        </div>
     );
 }
 
