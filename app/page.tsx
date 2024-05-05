@@ -20,6 +20,9 @@ export default function Home() {
                     <div className="col-span-1 md:col-span-3 lg:col-span-3">
                         <ProjectType type="Decks" maxImages={maxImages} />
                     </div>
+                    <div className="col-span-1 md:col-span-3 lg:col-span-3">
+                        <ProjectType type="Misc" maxImages={maxImages} />
+                    </div>
                 </div>
             </div>
             <Footer />
