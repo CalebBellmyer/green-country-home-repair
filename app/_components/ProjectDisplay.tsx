@@ -4,6 +4,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import PaginationButton from "./PaginationButton";
 import Image from "next/image";
+import Modal from "./Modal";
 
 interface ProjectTypeProps {
     type: string;
@@ -12,8 +13,17 @@ interface ProjectTypeProps {
 const ProjectType: React.FC<ProjectTypeProps> = ({ type }) => {
     const [imageUrls, setImageUrls] = useState<string[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const itemsPerPage = 12;
     const totalPages = Math.ceil(imageUrls.length / itemsPerPage);
+
+    const showModal = (url: string) => {
+        setSelectedImage(url);
+    };
+
+    const closeModal = () => {
+        setSelectedImage(null);
+    };
 
     useEffect(() => {
         fetch(`/api/ProjectImageFetcher?type=${type}`)
@@ -55,6 +65,7 @@ const ProjectType: React.FC<ProjectTypeProps> = ({ type }) => {
                                         width={277}
                                         height={200}
                                         style={{ objectFit: "cover" }}
+                                        onClick={() => showModal(url)}
                                     />
                                 </div>
                             ))}
@@ -67,6 +78,13 @@ const ProjectType: React.FC<ProjectTypeProps> = ({ type }) => {
                 />
             </div>
             <Footer />
+            {selectedImage && (
+                <Modal
+                    src={selectedImage}
+                    alt={`${type} project image`}
+                    onClose={closeModal}
+                />
+            )}
         </main>
     );
 };
