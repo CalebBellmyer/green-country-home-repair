@@ -25,7 +25,9 @@ const Page = () => {
             <div className="w-full flex-none md:w-64">
                 <SideNav setType={setCurrentType} />
             </div>
-            <ProjectTypeAdmin type={currentType} />
+            <div className="w-full">
+                <ProjectTypeAdmin type={currentType} />
+            </div>
         </div>
     );
 };

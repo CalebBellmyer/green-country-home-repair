@@ -97,8 +97,8 @@ const ProjectTypeAdmin = ({ type }: ProjectTypeProps) => {
     };
 
     return (
-        <section className="flex flex-col items-center p-4 bg-gray-100">
-            <div className="w-full max-w-4xl mx-auto md:grid md:grid-cols-3 lg:grid-cols-4">
+        <section className="w-full p-4 bg-gray-100">
+            <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {loading ? (
                     <p className="text-center text-gray-600">
                         Loading images...
@@ -112,31 +112,31 @@ const ProjectTypeAdmin = ({ type }: ProjectTypeProps) => {
                         .map((imageUrl, index) => (
                             <div
                                 key={index}
-                                className="md:px-2 md:py-2 flex flex-col"
+                                className="flex flex-col items-center"
                             >
-                                <div className="flex justify-end">
+                                <div className="flex justify-end w-full">
                                     <button
                                         type="button"
                                         aria-label="Delete Image"
                                         onClick={() => deleteImage(imageUrl)}
                                         disabled={deleting}
-                                        className={`text-red-500 text-2xl font-bold p-2 w-10 h-10 flex items-center justify-center rounded-full ${
+                                        className={`text-red-500 text-2xl font-bold p-2 rounded-full ${
                                             deleting
                                                 ? "opacity-50 cursor-not-allowed"
-                                                : "hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mt-2"
+                                                : "hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                         }`}
                                     >
                                         &times;
                                     </button>
                                 </div>
-
-                                <Image
-                                    src={imageUrl}
-                                    alt={`${type} image ${index + 1}`}
-                                    width={500}
-                                    height={300}
-                                    className="rounded-md"
-                                />
+                                <div className="w-full h-auto relative aspect-square rounded-md overflow-hidden">
+                                    <Image
+                                        src={imageUrl}
+                                        alt={`${type} image ${index + 1}`}
+                                        layout="fill"
+                                        className="object-cover"
+                                    />
+                                </div>
                             </div>
                         ))
                 ) : (
