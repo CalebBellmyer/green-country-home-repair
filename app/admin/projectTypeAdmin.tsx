@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { storage } from "../firebase";
 import {
@@ -25,13 +25,10 @@ const ProjectTypeAdmin = ({ type }: ProjectTypeProps) => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 12;
     const totalPages = Math.ceil(imageUrls.length / itemsPerPage);
+    const fileInputRef = useRef<HTMLInputElement | null>(null);
 
     const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const newFile = event.target.files ? event.target.files[0] : null;
-        setFile(newFile);
-    };
-
-    const uploadFile = () => {
+        const file = event.target.files ? event.target.files[0] : null;
         if (file) {
             const uploadRef = storageRef(storage, `${type}/${file.name}`);
             setUploading(true);
@@ -93,6 +90,12 @@ const ProjectTypeAdmin = ({ type }: ProjectTypeProps) => {
         setCurrentPage(page);
     };
 
+    const triggerFileInput = () => {
+        if (fileInputRef.current) {
+            fileInputRef.current.click();
+        }
+    };
+
     return (
         <section className="flex flex-col items-center p-4 bg-gray-100">
             <div className="w-full max-w-4xl mx-auto md:grid md:grid-cols-3 lg:grid-cols-4">
@@ -111,19 +114,22 @@ const ProjectTypeAdmin = ({ type }: ProjectTypeProps) => {
                                 key={index}
                                 className="md:px-2 md:py-2 flex flex-col"
                             >
-                                <button
-                                    type="button"
-                                    aria-label="Delete Image"
-                                    onClick={() => deleteImage(imageUrl)}
-                                    disabled={deleting}
-                                    className={`text-red-500 text-2xl font-bold p-2 rounded-md ${
-                                        deleting
-                                            ? "opacity-50 cursor-not-allowed"
-                                            : "hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mt-2 flex justify-end"
-                                    }`}
-                                >
-                                    &times;
-                                </button>
+                                <div className="flex justify-end">
+                                    <button
+                                        type="button"
+                                        aria-label="Delete Image"
+                                        onClick={() => deleteImage(imageUrl)}
+                                        disabled={deleting}
+                                        className={`text-red-500 text-2xl font-bold p-2 w-10 h-10 flex items-center justify-center rounded-full ${
+                                            deleting
+                                                ? "opacity-50 cursor-not-allowed"
+                                                : "hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mt-2"
+                                        }`}
+                                    >
+                                        &times;
+                                    </button>
+                                </div>
+
                                 <Image
                                     src={imageUrl}
                                     alt={`${type} image ${index + 1}`}
@@ -148,26 +154,19 @@ const ProjectTypeAdmin = ({ type }: ProjectTypeProps) => {
                 <div className="flex items-center justify-center space-x-4 p-4">
                     <div className="w-full sm:w-auto">
                         <input
+                            ref={fileInputRef}
                             type="file"
                             onChange={onFileChange}
-                            className="file:mr-4 file:w-full file:py-2 file:px-4 file:rounded-md file:border-0
-                           file:text-sm file:font-semibold file:bg-primary file:text-white
-                           hover:file:bg-tertiary hover:file:shadow-lg"
+                            className="hidden"
                         />
-                    </div>
-                    <div className="w-full sm:w-auto">
                         <button
-                            onClick={uploadFile}
-                            disabled={uploading}
-                            className={`w-full py-2 px-4 text-sm font-semibold rounded-md text-white bg-primary
-                            hover:bg-tertiary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
-                                uploading ? "opacity-50 cursor-not-allowed" : ""
-                            }`}
+                            type="button"
+                            onClick={triggerFileInput}
+                            className="w-20 h-20 flex items-center justify-center rounded-full bg-green-500 hover:bg-green-600 text-white text-3xl font-bold"
                         >
-                            {uploading ? "Uploading..." : "Upload"}
+                            +
                         </button>
                     </div>
-                    {error && <p className="text-red-500 text-sm">{error}</p>}
                 </div>
             </div>
         </section>
