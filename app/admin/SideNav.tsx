@@ -31,6 +31,7 @@ export default function SideNav({ setType }: SideNavProps) {
                     <AdminNavButton type="Bathrooms" setType={setType} />
                     <AdminNavButton type="Kitchens" setType={setType} />
                     <AdminNavButton type="Decks" setType={setType} />
+                    <AdminNavButton type="Misc" setType={setType} />
                 </div>
                 <div>
                     <button
