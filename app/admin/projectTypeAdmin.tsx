@@ -15,10 +15,12 @@ type ProjectTypeProps = {
     type: string;
 };
 
-const ProjectTypeAdmin = ({ type: type }: ProjectTypeProps) => {
+const ProjectTypeAdmin = ({ type }: ProjectTypeProps) => {
     const [imageUrls, setImageUrls] = useState<string[]>([]);
     const [file, setFile] = useState<File | null>(null);
     const [uploading, setUploading] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true); // New loading state
+    const [deleting, setDeleting] = useState<boolean>(false); // Deletion loader
     const [error, setError] = useState<string | null>(null);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 12;
@@ -37,7 +39,6 @@ const ProjectTypeAdmin = ({ type: type }: ProjectTypeProps) => {
             uploadBytes(uploadRef, file)
                 .then((snapshot) => {
                     getDownloadURL(snapshot.ref).then((downloadURL) => {
-                        console.log("File available at", downloadURL);
                         setImageUrls((prevUrls) => [...prevUrls, downloadURL]);
                         setUploading(false);
                     });
@@ -55,67 +56,86 @@ const ProjectTypeAdmin = ({ type: type }: ProjectTypeProps) => {
     const deleteImage = (imageUrl: string) => {
         if (window.confirm("Are you sure you want to delete this image?")) {
             const fileRef = storageRef(storage, imageUrl);
+            setDeleting(true);
 
             deleteObject(fileRef)
                 .then(() => {
                     setImageUrls((prevUrls) =>
                         prevUrls.filter((url) => url !== imageUrl)
                     );
+                    setDeleting(false);
                     console.log("File deleted successfully");
                 })
                 .catch((error) => {
                     console.error("Error removing file: ", error);
+                    setDeleting(false);
                 });
         }
     };
 
     useEffect(() => {
-        const start = (currentPage - 1) * itemsPerPage;
-        const end = start + itemsPerPage;
-
+        setLoading(true); // Set loading to true before fetching
         fetch(`/api/ProjectImageFetcher?type=${encodeURIComponent(type)}`)
             .then((response) => response.json())
             .then((data) => {
                 if (data.pictures && data.pictures.length > 0) {
                     setImageUrls(data.pictures);
                 }
+                setLoading(false); // Set loading to false after fetching
             })
-            .catch((error) => console.error("Error fetching images:", error));
-    }, [type, currentPage]); // type and currentPage are a dependency, effect re-runs when type/currentPage changes
+            .catch((error) => {
+                console.error("Error fetching images:", error);
+                setLoading(false); // Set loading to false even on error
+            });
+    }, [type, currentPage]);
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };
 
     return (
-        <section className="flex flex-col  items-center j p-4 bg-gray-100 ">
-            <div className="w-full max-w-4xl mx-auto md:grid md:grid-cols-3 ">
-                {imageUrls.length > 0 ? (
+        <section className="flex flex-col items-center p-4 bg-gray-100">
+            <div className="w-full max-w-4xl mx-auto md:grid md:grid-cols-3 lg:grid-cols-4">
+                {loading ? (
+                    <p className="text-center text-gray-600">
+                        Loading images...
+                    </p>
+                ) : imageUrls.length > 0 ? (
                     imageUrls
                         .slice(
                             (currentPage - 1) * itemsPerPage,
                             currentPage * itemsPerPage
                         )
                         .map((imageUrl, index) => (
-                            <div key={index} className="md:px-2 md:py-2">
+                            <div
+                                key={index}
+                                className="md:px-2 md:py-2 flex flex-col"
+                            >
+                                <button
+                                    type="button"
+                                    aria-label="Delete Image"
+                                    onClick={() => deleteImage(imageUrl)}
+                                    disabled={deleting}
+                                    className={`text-red-500 text-2xl font-bold p-2 rounded-md ${
+                                        deleting
+                                            ? "opacity-50 cursor-not-allowed"
+                                            : "hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mt-2 flex justify-end"
+                                    }`}
+                                >
+                                    &times;
+                                </button>
                                 <Image
                                     src={imageUrl}
                                     alt={`${type} image ${index + 1}`}
                                     width={500}
                                     height={300}
+                                    className="rounded-md"
                                 />
-                                <button
-                                    type="button"
-                                    onClick={() => deleteImage(imageUrl)}
-                                    className="text-white bg-red-500 p-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500  mt-2"
-                                >
-                                    Delete
-                                </button>
                             </div>
                         ))
                 ) : (
                     <p className="text-center text-gray-600">
-                        Loading images...
+                        No images found.
                     </p>
                 )}
             </div>
