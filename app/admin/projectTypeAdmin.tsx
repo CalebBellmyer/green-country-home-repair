@@ -28,25 +28,37 @@ const ProjectTypeAdmin = ({ type }: ProjectTypeProps) => {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
 
     const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files ? event.target.files[0] : null;
-        if (file) {
-            const uploadRef = storageRef(storage, `${type}/${file.name}`);
-            setUploading(true);
+        const allFiles = event.target.files;
 
-            uploadBytes(uploadRef, file)
-                .then((snapshot) => {
-                    getDownloadURL(snapshot.ref).then((downloadURL) => {
-                        setImageUrls((prevUrls) => [...prevUrls, downloadURL]);
-                        setUploading(false);
-                    });
-                })
-                .catch((error) => {
-                    console.error("Upload failed:", error);
-                    setError("Upload failed");
-                    setUploading(false);
-                });
-        } else {
-            setError("No file selected");
+        if (allFiles) {
+            for (let i = 0; i < allFiles.length; i++) {
+                let file = allFiles[i];
+                if (file) {
+                    const uploadRef = storageRef(
+                        storage,
+                        `${type}/${file.name}`
+                    );
+                    setUploading(true);
+
+                    uploadBytes(uploadRef, file)
+                        .then((snapshot) => {
+                            getDownloadURL(snapshot.ref).then((downloadURL) => {
+                                setImageUrls((prevUrls) => [
+                                    ...prevUrls,
+                                    downloadURL,
+                                ]);
+                                setUploading(false);
+                            });
+                        })
+                        .catch((error) => {
+                            console.error("Upload failed:", error);
+                            setError("Upload failed");
+                            setUploading(false);
+                        });
+                } else {
+                    setError("No file selected");
+                }
+            }
         }
     };
 
@@ -156,6 +168,7 @@ const ProjectTypeAdmin = ({ type }: ProjectTypeProps) => {
                         <input
                             ref={fileInputRef}
                             type="file"
+                            multiple
                             onChange={onFileChange}
                             className="hidden"
                         />
