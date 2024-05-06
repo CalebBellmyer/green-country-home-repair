@@ -6,7 +6,7 @@ function HamburgerMenu({
     isMenuOpen: boolean;
 }) {
     return (
-        <div className="md:hidden">
+        <div className="md:hidden" aria-label="navigation-menu">
             <button
                 className="relative group"
                 onClick={() => {
