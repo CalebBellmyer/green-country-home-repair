@@ -2,7 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import Carousel from "./Carousel";
+import CarouselButton from "./CarouselButton";
 import Link from "next/link";
+import { set } from "firebase/database";
 
 type ProjectTypeProps = {
     type: string;
@@ -11,6 +13,7 @@ type ProjectTypeProps = {
 
 const ProjectType = ({ type, maxImages = undefined }: ProjectTypeProps) => {
     const [imageUrls, setImageUrls] = useState<string[]>([]);
+
     maxImages = 6 || 3;
 
     useEffect(() => {
@@ -36,9 +39,27 @@ const ProjectType = ({ type, maxImages = undefined }: ProjectTypeProps) => {
                 {imageUrls.length > 0 ? (
                     <Carousel images={imageUrls} />
                 ) : (
-                    <p className="text-center text-gray-600">
-                        Loading images...
-                    </p>
+                    <div className="flex items-center justify-center space-x-4">
+                        <CarouselButton
+                            direction="left"
+                            aria-label="right carousel navigation arrow"
+                            onClick={() => {}}
+                            // Add in once swipe gesture is added
+                            // isDisabled={window.innerWidth <= 820}
+                        />
+                        <div className="w-full max-w-2xl h-[400px] relative flex items-center justify-center overflow-hidden shadow-lg rounded-lg">
+                            <div className="animate-pulse duration-100 rounded-lg min-width-[640px] w-full h-full bg-gray-300 ">
+                                {" "}
+                            </div>
+                        </div>
+                        <CarouselButton
+                            direction="right"
+                            aria-label="left carousel navigation arrow"
+                            onClick={() => {}}
+                            // Add in once swipe gesture is added
+                            // isDisabled={window.innerWidth <= 820}
+                        />
+                    </div>
                 )}
             </div>
         </section>
