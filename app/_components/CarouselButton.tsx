@@ -4,15 +4,18 @@ interface CarouselButtonProps {
     direction: "left" | "right";
     onClick: () => void;
     className?: string;
+    isDisabled?: boolean;
 }
 
 const CarouselButton: React.FC<CarouselButtonProps> = ({
     direction,
     onClick,
     className,
+    isDisabled,
 }) => {
     const isLeft = direction === "left";
-    // Using Font Awesome icons for better visual appeal
+    const disabled = isDisabled ? "hidden" : "";
+
     const icon = isLeft ? (
         <svg
             className="w-4 h-4 md:w-6 md:h-6"
@@ -48,7 +51,7 @@ const CarouselButton: React.FC<CarouselButtonProps> = ({
     return (
         <button
             onClick={onClick}
-            className={`inline-flex items-center justify-center bg-white bg-opacity-60 hover:bg-opacity-80 rounded-full shadow-md p-3 text-lg transition duration-300 ease-in-out ${className}`}
+            className={`inline-flex items-center justify-center bg-white bg-opacity-60 hover:bg-opacity-80 rounded-full shadow-md p-3 text-lg transition duration-300 ease-in-out ${className} ${disabled}`}
             aria-label={isLeft ? "Previous" : "Next"}
         >
             {icon}
