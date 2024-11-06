@@ -71,6 +71,7 @@ const ProjectType: React.FC<ProjectTypeProps> = ({ type }) => {
                                         alt={`${type} project image ${index + 1}`}
                                         fill
                                         style={{ objectFit: "cover" }}
+                                        onClick={() => showModal(url)}
                                     />
                                 </div>
                             ))}
