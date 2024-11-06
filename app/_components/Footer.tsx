@@ -14,9 +14,6 @@ const Footer = () => {
                 </div>
                 <div>
                     {/* Footer Navigation */}
-                    <a href="/about" className="mx-2">
-                        About Us
-                    </a>
                     <a href="/contact" className="mx-2">
                         Contact
                     </a>
