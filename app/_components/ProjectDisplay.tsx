@@ -57,15 +57,20 @@ const ProjectType: React.FC<ProjectTypeProps> = ({ type }) => {
                                     className="flex w-72 h-52 relative overflow-hidden rounded-lg shadow-lg "
                                 >
                                     <Image
+                                    //     src={url}
+                                    //     alt={`${type} project image ${
+                                    //         index + 1
+                                    //     }`}
+                                    //     layout="responsive"
+                                    //     width={277}
+                                    //     height={200}
+                                    //     style={{ objectFit: "cover" }}
+                                    //     onClick={() => showModal(url)}
+                                    // 
                                         src={url}
-                                        alt={`${type} project image ${
-                                            index + 1
-                                        }`}
-                                        layout="responsive"
-                                        width={277}
-                                        height={200}
+                                        alt={`${type} project image ${index + 1}`}
+                                        fill
                                         style={{ objectFit: "cover" }}
-                                        onClick={() => showModal(url)}
                                     />
                                 </div>
                             ))}
