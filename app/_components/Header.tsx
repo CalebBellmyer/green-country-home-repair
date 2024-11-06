@@ -8,13 +8,13 @@ const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <header className='bg-primary z-50'>
+        <header className='bg-primary z-50 py-4'>
             <nav className='container mx-auto flex justify-between items-center py-2 px-6'>
                 <div className='text-lg font-bold text-white'>
                     <Link href='/'>
                         <Logo />
                     </Link>{' '}
-                    {/* Replace with your company logo */}
+                    
                 </div>
 
                 {/* Hamburger Menu Icon for Mobile */}
@@ -34,7 +34,7 @@ const Header = () => {
                     <li>
                         <Link
                             href='/kitchens'
-                            className='text-white hover:text-gray-200'
+                            className='text-white hover:text-gray-200 md:text-xl'
                         >
                             Kitchens
                         </Link>
@@ -42,7 +42,7 @@ const Header = () => {
                     <li>
                         <Link
                             href='/bathrooms'
-                            className='text-white hover:text-gray-200'
+                            className='text-white hover:text-gray-200 md:text-xl'
                         >
                             Bathrooms
                         </Link>
@@ -50,7 +50,7 @@ const Header = () => {
                     <li>
                         <Link
                             href='/decks'
-                            className='text-white hover:text-gray-200'
+                            className='text-white hover:text-gray-200 md:text-xl'
                         >
                             Decks
                         </Link>
@@ -58,7 +58,7 @@ const Header = () => {
                     <li>
                         <Link
                             href='/misc'
-                            className='text-white hover:text-gray-200'
+                            className='text-white hover:text-gray-200 md:text-xl'
                         >
                             Misc
                         </Link>
@@ -66,7 +66,7 @@ const Header = () => {
                     <li>
                         <Link
                             href='/contact'
-                            className='text-white hover:text-gray-200'
+                            className='text-white hover:text-gray-200 md:text-xl'
                         >
                             Contact
                         </Link>
