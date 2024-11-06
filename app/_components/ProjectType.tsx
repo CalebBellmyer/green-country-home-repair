@@ -31,7 +31,7 @@ const ProjectType = ({ type, maxImages = undefined }: ProjectTypeProps) => {
     return (
         <section className="flex flex-col items-center justify-center p-4 bg-gray-100">
             <Link href={`/${type.toLowerCase()}`}>
-                <span className="text-lg font-semibold hover:text-slate-500 transition duration-300 ">
+                <span className="text-lg md:text-2xl font-semibold hover:text-slate-500 transition duration-300 ">
                     {type}
                 </span>
             </Link>
