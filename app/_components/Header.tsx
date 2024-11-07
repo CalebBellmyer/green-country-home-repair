@@ -8,7 +8,7 @@ const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <header className='bg-primary z-50 py-4'>
+        <header className='bg-primary py-4'>
             <nav className='container mx-auto flex justify-between items-center py-2 px-6'>
                 <div className='text-lg font-bold text-white'>
                     <Link href='/'>
