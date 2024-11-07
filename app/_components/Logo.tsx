@@ -7,8 +7,8 @@ function Logo() {
             src='/decal.png'
             alt="Green Country Home Repair's logo"
             className='z-50 cursor-pointer'
-            width={128}
-            height={128}
+            width={150}
+            height={150}
         />
     );
 }
