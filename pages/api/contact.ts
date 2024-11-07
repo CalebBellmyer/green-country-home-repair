@@ -15,12 +15,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         Messages: [
             {
                 From: {
-                    Email: `cjbellmyer5984@gmail.com`,
+                    Email: `${email}`,
                     Name: `${name}`,
                 },
                 To: [
                     {
-                        Email: "cjbellmyer5984@gmail.com",
+                        Email: "johnnybellmyer@hotmail.com",
                         Name: `${name}`,
                     },
                 ],
