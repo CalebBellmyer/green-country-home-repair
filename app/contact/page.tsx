@@ -13,8 +13,8 @@ function Contact() {
                 </p> 
                 <div className="flex items-center justify-center">
                     <p className="text-lg py-2 w-2/3">
-                        Contact Green Country Home Repair today to schedule your free estimate. Call us at 918-
-                        214-6006 Monday thru Friday 7:00 am to 5:00 pm or fill out the form below and we will
+                        Contact Green Country Home Repair today to schedule your free estimate. Call us at 
+                        918-214-6006 Monday thru Friday 7:00 am to 5:00 pm or fill out the form below and we will
                         contact you as soon as possible.
                     </p>
                 </div>
