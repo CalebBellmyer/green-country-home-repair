@@ -9,6 +9,7 @@ function HamburgerMenu({
         <div className="md:hidden" aria-label="navigation-menu">
             <button
                 className="relative group"
+                aria-label="open navigation menu"
                 onClick={() => {
                     setIsMenuOpen(!isMenuOpen);
                     console.log(!isMenuOpen);
