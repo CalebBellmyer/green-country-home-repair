@@ -29,7 +29,7 @@ const Header = () => {
                 <ul
                     className={`${
                         isMenuOpen ? 'flex' : 'hidden'
-                    } flex-col md:flex md:flex-row md:space-x-4 absolute md:relative top-16 md:top-auto left-0 md:left-auto w-full md:w-auto bg-primary md:bg-transparent p-6 md:p-0 transition-all duration-300 ease-in-out z-10`}
+                    } flex-col md:flex md:flex-row md:space-x-4 absolute md:relative top-28 md:top-auto left-0 md:left-auto w-full md:w-auto bg-primary md:bg-transparent p-6 md:p-0 transition-all duration-300 ease-in-out  z-10 `}
                 >
                     <li>
                         <Link
