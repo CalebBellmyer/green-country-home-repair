@@ -43,8 +43,8 @@ const ProjectType: React.FC<ProjectTypeProps> = ({ type }) => {
     return (
         <main className="flex flex-col min-h-screen w-full bg-gray-100">
             <Header />
-            <div className="w-full mx-auto p-4 flex-grow">
-                <div className="justify-center flex">
+            <div className=" flex w-full mx-auto p-4 flex-grow justify-center items-center flex-col">
+                <div className="flex w-full justify-center items-center " >
                     <div className="2xl:w-5/6 grid   grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
                         {imageUrls
                             .slice(
@@ -54,22 +54,14 @@ const ProjectType: React.FC<ProjectTypeProps> = ({ type }) => {
                             .map((url, index) => (
                                 <div
                                     key={index}
-                                    className="flex w-72 h-52 relative overflow-hidden rounded-lg shadow-lg "
+                                    className="flex w-72 h-52 md:w-full md:h-80 relative overflow-hidden rounded-lg shadow-lg "
                                 >
                                     <Image
-                                    //     src={url}
-                                    //     alt={`${type} project image ${
-                                    //         index + 1
-                                    //     }`}
-                                    //     layout="responsive"
-                                    //     width={277}
-                                    //     height={200}
-                                    //     style={{ objectFit: "cover" }}
-                                    //     onClick={() => showModal(url)}
-                                    // 
                                         src={url}
                                         alt={`${type} project image ${index + 1}`}
-                                        fill
+                                        width={340} // Adjust based on the grid size
+                                        height={208}
+                                        quality={100}
                                         style={{ objectFit: "cover" }}
                                         onClick={() => showModal(url)}
                                     />
