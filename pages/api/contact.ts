@@ -1,45 +1,54 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import Mailjet from "node-mailjet";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     console.log("Data", req.body);
-
+    
     const { name, email, message, phone } = req.body;
+
+    // Basic validation for required fields
+    if (!name || !email || !message) {
+        return res.status(400).json({ error: "Name, email, and message are required fields." });
+    }
 
     const mailjet = Mailjet.apiConnect(
         process.env.MJ_APIKEY_PUBLIC || "",
         process.env.MJ_APIKEY_PRIVATE || ""
     );
 
-    const request = mailjet.post("send", { version: "v3.1" }).request({
-        Messages: [
-            {
-                From: {
-                    Email: `${email}`,
-                    Name: `${name}`,
-                },
-                To: [
-                    {
-                        Email: "johnnybellmyer@hotmail.com",
-                        Name: `${name}`,
+    try {
+        const request = await mailjet.post("send", { version: "v3.1" }).request({
+            Messages: [
+                {
+                    From: {
+                        Email: "cjbellmyer5984@gmail.com",
+                        Name: "Green Country Home Repair",
                     },
-                ],
-                Subject: "Request Service",
-                TextPart: `${message} 
-                    my email adress is ${email}
+                    To: [
+                        {
+                            Email: "johnnybellmyer@hotmail.com",
+                            Name: "Johnny Bellmyer",
+                        },
+                    ],
+                    Subject: "Request Service Form",
+                    TextPart: `${message}\nMy email address is ${email}`,
+                    HTMLPart: `
+                        <p>${message}</p>
+                        <br />
+                        <h3>Name: ${name}</h3>
+                        <h3>Email: ${email}</h3>
+                        <br />
+                        <h3>Phone: ${phone}</h3>
                     `,
-                HTMLPart: `<p>${message}</p><br /><h3>My name is: ${name}</h3><h3>My email adress: ${email}</h3><br /><h3>My phone number: ${phone}`,
-            },
-        ],
-    });
-
-    request
-        .then((result) => {
-            console.log(result.body);
-        })
-        .catch((err) => {
-            console.log(err.statusCode);
+                },
+            ],
         });
 
-    res.status(200).json({ submitted: "true" });
+        console.log("Email sent successfully:", request.body);
+        return res.status(200).json({ submitted: true, message: "Email sent successfully" });
+    } catch (error) {
+        console.error("Error sending email:", error);
+        return res.status(500).json({ submitted: false, error: "Failed to send email" });
+    }
 }
+
