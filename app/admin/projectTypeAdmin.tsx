@@ -144,9 +144,12 @@ const ProjectTypeAdmin = ({ type }: ProjectTypeProps) => {
                                 <div className="w-full h-auto relative aspect-square rounded-md overflow-hidden">
                                     <Image
                                         src={imageUrl}
-                                        alt={`${type} image ${index + 1}`}
-                                        layout="fill"
-                                        className="object-cover"
+                                        alt={`${type} project image ${index + 1}`}
+                                        width={340} // Adjust based on the grid size
+                                        height={208}
+                                        quality={100}
+                                        style={{ objectFit: "cover" }}
+
                                     />
                                 </div>
                             </div>
