@@ -33,7 +33,7 @@ const ProjectTypeAdmin = ({ type }: ProjectTypeProps) => {
         if (allFiles) {
             for (let i = 0; i < allFiles.length; i++) {
                 let file = allFiles[i];
-                if (file) {
+                if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
                     const uploadRef = storageRef(
                         storage,
                         `${type}/${file.name}`
@@ -56,7 +56,9 @@ const ProjectTypeAdmin = ({ type }: ProjectTypeProps) => {
                             setUploading(false);
                         });
                 } else {
-                    setError("No file selected");
+                    alert("Only JPG and PNG files are allowed");
+                    setError("Only JPG and PNG files are allowed");
+                    console.log('jpg or png only')
                 }
             }
         }
