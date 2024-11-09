@@ -54,7 +54,7 @@ const ProjectType: React.FC<ProjectTypeProps> = ({ type }) => {
                             .map((url, index) => (
                                 <div
                                     key={index}
-                                    className="flex w-72 h-52 md:w-full md:h-80 relative overflow-hidden rounded-lg shadow-lg "
+                                    className="flex w-72 h-52 md:w-80  md:h-80 relative overflow-hidden rounded-lg shadow-lg "
                                 >
                                     <Image
                                         src={url}
