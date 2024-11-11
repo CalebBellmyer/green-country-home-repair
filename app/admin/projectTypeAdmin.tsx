@@ -175,6 +175,7 @@ const ProjectTypeAdmin = ({ type }: ProjectTypeProps) => {
                             type="file"
                             multiple
                             onChange={onFileChange}
+                            accept="image/jpeg, image/png"
                             className="hidden"
                         />
                         <button
